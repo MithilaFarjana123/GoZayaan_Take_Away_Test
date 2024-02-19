@@ -13,7 +13,7 @@ import com.takeawaytest.data.Model.ContactListResponce
 import com.takeawaytest.data.Model.Result
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ItemAdapter ( val contactList: ArrayList<Result>) :
+class ItemAdapter (var contactList: ArrayList<Result>) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     private lateinit var onClickListener: OnAdapterItemClickListener
@@ -28,7 +28,10 @@ class ItemAdapter ( val contactList: ArrayList<Result>) :
         onClickListener = listener
 
     }
-
+    fun setFilteredList(contactList: ArrayList<Result>){
+        this.contactList = contactList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)

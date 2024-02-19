@@ -18,7 +18,12 @@
         android:padding="5dp"
         android:textSize="20sp"/>
 
-    <androidx.cardview.widget.CardView
+
+
+
+
+
+        <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="18dp"
@@ -34,18 +39,22 @@
             android:background="#e5e5e5"
             >
 
-            <SearchView
-                android:id="@+id/searchView"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchview"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:clipToOutline="false"
-                android:iconifiedByDefault="false"
+                android:textCursorDrawable="@null"
+                app:iconifiedByDefault="false"
                 android:queryHint="Search"
                 app:queryBackground="@null" />
 
 
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
+
 
 
     <androidx.recyclerview.widget.RecyclerView
