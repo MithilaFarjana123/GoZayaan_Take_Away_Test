@@ -35,7 +35,6 @@ class ContactList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_list)
-      //  var searchView = findViewById<SearchView>(R.id.searchView)
         ContactViewModelFactory()
         setupViewModel()
         shimmer_con_container = findViewById(R.id.shimmer_con_container)
@@ -169,15 +168,7 @@ class ContactList : AppCompatActivity() {
                 }
                 if (filteredlist.isEmpty()) {
 
-                    Utility.getBaseMessage(
-                        this,
-                        "Sorry",
-                        "No data found",
-                        R.drawable.error_white,
-                        0
-                    )
-
-
+                    Toast.makeText(this, "Sorry!No data found", Toast.LENGTH_LONG).show()
 
                 }
 
@@ -190,23 +181,15 @@ class ContactList : AppCompatActivity() {
             }
 
             else {
-                Utility.getBaseMessage(
-                    this,
-                    "Sorry",
-                    "No data found",
-                    R.drawable.error_white,
-                    2
-                )
+
+               // Toast.makeText(this, "Sorry!No data found", Toast.LENGTH_LONG).show()
+
             }
 
         } else {
-            Utility.getBaseMessage(
-                this,
-                "Sorry",
-                "No data found",
-                R.drawable.error_white,
-                0
-            )
+          //  Toast.makeText(this, "Sorry!No data found", Toast.LENGTH_LONG).show()
+
+
         }
     }
 

@@ -30,8 +30,6 @@
 
 
             <androidx.appcompat.widget.SearchView
-
-
                 android:text="Search here "
                 android:id="@+id/searchview"
                 android:layout_width="match_parent"
