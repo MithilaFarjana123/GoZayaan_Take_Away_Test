@@ -3,11 +3,12 @@ package com.takeawaytest.common
 import android.app.Activity
 import android.content.Context
 import com.google.gson.Gson
+import com.takeawaytest.data.Model.Result
 
 object Utility {
 
 
-    fun saveUserInfo(info: Result?, activity: Activity) {
+    fun saveUserInfo(info: Result, activity: Activity) {
         val mPrefs =
             activity.getSharedPreferences(activity.packageName, Context.MODE_PRIVATE).edit()
         val gson = Gson()
@@ -20,7 +21,7 @@ object Utility {
         val prefs = activity.getSharedPreferences(activity.packageName, Context.MODE_PRIVATE)
         val gson = Gson()
         val json = prefs.getString("UserInfo", "")
-        return gson.fromJson(json, Result::class.java)
+        return gson.fromJson(json,Result::class.java)
     }
 
     fun getBaseMessage(activity: Activity, title: String, mess: String, icon: Int, status: Int) {

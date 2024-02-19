@@ -47,7 +47,7 @@ class ItemAdapter (var contactList: ArrayList<Result>) :
         val ConName = holder.itemView.findViewById<TextView>(R.id.ConName)
         ConName.text = Data.fullName
         val ConNum = holder.itemView.findViewById<TextView>(R.id.ConNum)
-        ConNum.text = Data.phoneNumber
+        ConNum.text = main(Data.phoneNumber.toString())
 
         val img =  holder.itemView.findViewById<CircleImageView>(R.id.ConImg)
         var imglink = Data.image.toString()
@@ -66,6 +66,20 @@ class ItemAdapter (var contactList: ArrayList<Result>) :
         }
 
 
+    }
+
+
+    fun formatPhoneNumber(phoneNumber: String): String {
+        val cleanNumber = phoneNumber.replace("\\D".toRegex(), "")
+
+        // Apply the desired format
+        return "(${cleanNumber.substring(0, 3)}) ${cleanNumber.substring(3, 6)}-${cleanNumber.substring(6)}"
+    }
+
+    fun main(phoneNumber: String): String {
+        val formattedPhoneNumber = formatPhoneNumber(phoneNumber)
+
+        return formattedPhoneNumber
     }
 
     override fun getItemCount(): Int {

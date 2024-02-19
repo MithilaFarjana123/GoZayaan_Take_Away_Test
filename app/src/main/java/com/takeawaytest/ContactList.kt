@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -126,11 +125,15 @@ class ContactList : AppCompatActivity() {
         val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView_contact.layoutManager = manager
         recyclerView_contact.adapter = itemAdapter
+        var intent = Intent (this, ContactDetails::class.java)
 
 
         itemAdapter.setOnItemClickListener(object :
             ItemAdapter.OnAdapterItemClickListener {
             override fun OnSelectSubMenu(v: View?, position: Int) {
+                val contactInfo : ArrayList<Result> = items
+                saveUserInfo(contactInfo[position],this@ContactList)
+                startActivity(intent)
 
 
 
@@ -214,12 +217,15 @@ class ContactList : AppCompatActivity() {
             val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
             rv.layoutManager = manager
             rv.adapter = itemAdapter
-           // var intent = Intent (this, ContactDetails::class.java)
+            var intent = Intent (this, ContactDetails::class.java)
 
             itemAdapter.setOnItemClickListener(object :
                 ItemAdapter.OnAdapterItemClickListener {
                 override fun OnSelectSubMenu(v: View?, position: Int) {
 
+                    val contactInfo : ArrayList<Result> = items
+                    saveUserInfo(contactInfo[position],this@ContactList)
+                    startActivity(intent)
 
 
                 }
