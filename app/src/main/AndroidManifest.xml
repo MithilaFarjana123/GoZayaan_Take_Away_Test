@@ -15,13 +15,13 @@
         tools:targetApi="34">
 
         <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".ContactDetails"
             android:exported="false" />
         <activity
             android:name=".ContactList"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
