@@ -43,6 +43,7 @@ class ContactList : AppCompatActivity() {
         shimmer_con_container.startShimmer()
 
         searchView = findViewById<androidx.appcompat.widget.SearchView>(R.id.searchview)
+        searchView.setQueryHint("search ")
 
         getUsersContactList()
 

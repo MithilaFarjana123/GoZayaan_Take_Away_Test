@@ -16,12 +16,8 @@
         android:gravity="center"
         android:textColor="@color/black"
         android:padding="5dp"
+        android:layout_marginTop="10dp"
         android:textSize="20sp"/>
-
-
-
-
-
 
         <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -32,25 +28,22 @@
         android:layout_marginRight="20dp"
         >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#e5e5e5"
-            >
 
             <androidx.appcompat.widget.SearchView
+
+
+                android:text="Search here "
                 android:id="@+id/searchview"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:textCursorDrawable="@null"
                 app:iconifiedByDefault="false"
                 android:queryHint="Search"
+                android:background="#e5e5e5"
                 app:queryBackground="@null" />
 
 
 
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <com.facebook.shimmer.ShimmerFrameLayout
@@ -93,7 +86,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_contact"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
