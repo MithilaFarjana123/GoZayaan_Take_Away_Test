@@ -20,7 +20,7 @@ import java.util.ArrayList
 class MainActivity : AppCompatActivity() {
 
 
-    private val SPLASH_DISPLAY_LENGTH = 2000
+    private val SPLASH_DISPLAY_LENGTH = 1500
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

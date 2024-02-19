@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.takeawaytest.UI.ViewModel.ContactViewModel
 import com.takeawaytest.UI.ViewModelFactory.ContactViewModelFactory
 import com.takeawaytest.common.Status
@@ -27,6 +28,7 @@ class ContactList : AppCompatActivity() {
     private lateinit var adapter: ItemAdapter
     private var conList = ArrayList<Result>()
     private lateinit var recyclerView_contact : RecyclerView
+    lateinit var shimmer_con_container : ShimmerFrameLayout
 
 
 
@@ -36,6 +38,9 @@ class ContactList : AppCompatActivity() {
       //  var searchView = findViewById<SearchView>(R.id.searchView)
         ContactViewModelFactory()
         setupViewModel()
+        shimmer_con_container = findViewById(R.id.shimmer_con_container)
+        shimmer_con_container.visibility = View.VISIBLE
+        shimmer_con_container.startShimmer()
 
         searchView = findViewById<androidx.appcompat.widget.SearchView>(R.id.searchview)
 
@@ -91,7 +96,8 @@ class ContactList : AppCompatActivity() {
 
                     }
                     Status.ERROR -> {
-
+                        shimmer_con_container.visibility = View.GONE
+                        shimmer_con_container.stopShimmer()
                         Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                     }
                 }
@@ -111,7 +117,8 @@ class ContactList : AppCompatActivity() {
                 recyclerView_contact.visibility = View.GONE
             }
         }
-
+        shimmer_con_container.visibility = View.GONE
+        shimmer_con_container.stopShimmer()
 
     }
 
