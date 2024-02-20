@@ -13,7 +13,6 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.takeawaytest.UI.ViewModel.ContactViewModel
 import com.takeawaytest.UI.ViewModelFactory.ContactViewModelFactory
 import com.takeawaytest.common.Status
-import com.takeawaytest.common.Utility
 import com.takeawaytest.common.Utility.saveUserInfo
 import com.takeawaytest.data.Adapter.ItemAdapter
 import com.takeawaytest.data.Model.ContactListResponce

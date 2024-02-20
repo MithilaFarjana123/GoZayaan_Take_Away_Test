@@ -24,19 +24,33 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        requestPermissions(arrayOf(android.Manifest.permission.CALL_PHONE), 1)
+
         val textSplash: TextView = findViewById(R.id.textSplash)
 
         // Optionally, you can customize the text or other properties here
 
-        Handler().postDelayed({
-            val mainIntent = Intent(this@MainActivity, ContactList::class.java)
-            startActivity(mainIntent)
-            finish()
-        }, SPLASH_DISPLAY_LENGTH.toLong())
+
 
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1 && grantResults.isNotEmpty() && grantResults[0] == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+           // makePhoneCall()
 
+            Handler().postDelayed({
+                val mainIntent = Intent(this@MainActivity, ContactList::class.java)
+                startActivity(mainIntent)
+                finish()
+            }, SPLASH_DISPLAY_LENGTH.toLong())
+        }
+    }
 
 
 
