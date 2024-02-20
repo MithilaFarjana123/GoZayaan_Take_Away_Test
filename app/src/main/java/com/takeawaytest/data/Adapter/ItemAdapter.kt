@@ -28,8 +28,8 @@ class ItemAdapter (var contactList: ArrayList<Result>) :
         onClickListener = listener
 
     }
-    fun setFilteredList(contactList: ArrayList<Result>){
-        this.contactList = contactList
+    fun clearList() {
+        contactList.clear()
         notifyDataSetChanged()
     }
 

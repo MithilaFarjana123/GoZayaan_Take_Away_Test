@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +29,7 @@ class ContactList : AppCompatActivity() {
     private var conList = ArrayList<Result>()
     private lateinit var recyclerView_contact : RecyclerView
     lateinit var shimmer_con_container : ShimmerFrameLayout
-
+    val List = ArrayList<Result>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +37,15 @@ class ContactList : AppCompatActivity() {
         setContentView(R.layout.activity_contact_list)
         ContactViewModelFactory()
         setupViewModel()
+
+
         shimmer_con_container = findViewById(R.id.shimmer_con_container)
         shimmer_con_container.visibility = View.VISIBLE
         shimmer_con_container.startShimmer()
 
         searchView = findViewById<androidx.appcompat.widget.SearchView>(R.id.searchview)
         searchView.setQueryHint("search ")
-
+        //adapter = ItemAdapter(List)
         getUsersContactList()
 
         recyclerView_contact = this.findViewById<RecyclerView>(R.id.recyclerView_contact)
@@ -168,15 +171,22 @@ class ContactList : AppCompatActivity() {
                 if (filteredlist.isEmpty()) {
 
                     Toast.makeText(this, "Sorry!No data found", Toast.LENGTH_LONG).show()
-
-                }
-
-                else {
+                   // adapter = ItemAdapter(filteredlist)
+                   // adapter.clearList()
                     prepareOtherList(
                         recyclerView_contact,
                         filteredlist
                     )
                 }
+
+                else {
+                        prepareOtherList(
+                            recyclerView_contact,
+                            filteredlist
+                        )
+
+                }
+
             }
 
             else {
@@ -200,6 +210,7 @@ class ContactList : AppCompatActivity() {
     ) {
 
         if (items.size > 0) {
+            rv.visibility = View.VISIBLE
             val itemAdapter = ItemAdapter(items)
             val rLayoutmanager: RecyclerView.LayoutManager = LinearLayoutManager(this)
 
@@ -221,6 +232,10 @@ class ContactList : AppCompatActivity() {
                 }
             })
 
+        }
+
+        else{
+            rv.visibility = View.GONE
         }
 
 
