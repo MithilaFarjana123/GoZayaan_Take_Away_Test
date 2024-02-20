@@ -210,7 +210,7 @@ class ContactList : AppCompatActivity() {
     ) {
 
         if (items.size > 0) {
-            rv.visibility = View.VISIBLE
+           // rv.visibility = View.VISIBLE
             val itemAdapter = ItemAdapter(items)
             val rLayoutmanager: RecyclerView.LayoutManager = LinearLayoutManager(this)
 
@@ -235,11 +235,36 @@ class ContactList : AppCompatActivity() {
         }
 
         else{
-            rv.visibility = View.GONE
+         //  rv.visibility = View.GONE
+            val itemAdapter = ItemAdapter(items)
+            itemAdapter.clearList(items)
+            val rLayoutmanager: RecyclerView.LayoutManager = LinearLayoutManager(this)
+
+            rv.layoutManager = rLayoutmanager
+            val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            rv.layoutManager = manager
+            rv.adapter = itemAdapter
+            var intent = Intent (this, ContactDetails::class.java)
+
+            itemAdapter.setOnItemClickListener(object :
+                ItemAdapter.OnAdapterItemClickListener {
+                override fun OnSelectSubMenu(v: View?, position: Int) {
+
+                    val contactInfo : ArrayList<Result> = items
+                    saveUserInfo(contactInfo[position],this@ContactList)
+                    startActivity(intent)
+
+
+                }
+            })
         }
 
 
     }
+
+
+
+
 
 
 }

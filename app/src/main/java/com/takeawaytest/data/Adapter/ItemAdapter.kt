@@ -28,8 +28,8 @@ class ItemAdapter (var contactList: ArrayList<Result>) :
         onClickListener = listener
 
     }
-    fun clearList() {
-        contactList.clear()
+    fun clearList(newDataList: ArrayList<Result>) {
+        newDataList.clear()
         notifyDataSetChanged()
     }
 
@@ -43,26 +43,32 @@ class ItemAdapter (var contactList: ArrayList<Result>) :
     override fun onBindViewHolder(holder: ItemAdapter.ViewHolder, position: Int) {
         mContext = holder.itemView.context
 
-        val Data = contactList[position]
-        val ConName = holder.itemView.findViewById<TextView>(R.id.ConName)
-        ConName.text = Data.fullName
-        val ConNum = holder.itemView.findViewById<TextView>(R.id.ConNum)
-        ConNum.text = main(Data.phoneNumber.toString())
 
-        val img =  holder.itemView.findViewById<CircleImageView>(R.id.ConImg)
-        var imglink = Data.image.toString()
-        if(imglink.isNotEmpty()){
-            //ToDo Image
-            Glide
-                .with(mContext)
-                .load(Data.image.toString())
-                .error(R.drawable.ic_no_img)
-                .fitCenter()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .placeholder(R.drawable.ic_user_profile)
-                //  .transform(RoundedCorners(30,30.0))
-                .into(img)
+        if(contactList.size>0){
+
+            val Data = contactList[position]
+            val ConName = holder.itemView.findViewById<TextView>(R.id.ConName)
+            ConName.text = Data.fullName
+            val ConNum = holder.itemView.findViewById<TextView>(R.id.ConNum)
+            ConNum.text = main(Data.phoneNumber.toString())
+
+            val img =  holder.itemView.findViewById<CircleImageView>(R.id.ConImg)
+            var imglink = Data.image.toString()
+            if(imglink.isNotEmpty()){
+                //ToDo Image
+                Glide
+                    .with(mContext)
+                    .load(Data.image.toString())
+                    .error(R.drawable.ic_no_img)
+                    .fitCenter()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .placeholder(R.drawable.ic_user_profile)
+                    //  .transform(RoundedCorners(30,30.0))
+                    .into(img)
+
+        }
+
         }
 
 
