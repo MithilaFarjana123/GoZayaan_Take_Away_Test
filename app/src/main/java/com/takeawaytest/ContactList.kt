@@ -30,12 +30,13 @@ class ContactList : AppCompatActivity() {
     private lateinit var recyclerView_contact : RecyclerView
     lateinit var shimmer_con_container : ShimmerFrameLayout
     val List = ArrayList<Result>()
+    private var noDataFoundToastShown = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_list)
-        ContactViewModelFactory()
+      //  ContactViewModelFactory()
         setupViewModel()
 
 
@@ -64,7 +65,12 @@ class ContactList : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String): Boolean {
                 if (newText.isNotEmpty()) {
-                    filter(newText)
+                 //   if(newText.length >= 3){
+
+                        filter(newText)
+
+                 //   }
+
                 }
                 return false
             }
@@ -166,13 +172,19 @@ class ContactList : AppCompatActivity() {
                             .contains(text.lowercase(Locale.getDefault()))
                     ) {
                         filteredlist.add(item)
+
                     }
+
                 }
                 if (filteredlist.isEmpty()) {
 
-                    Toast.makeText(this, "Sorry!No data found", Toast.LENGTH_LONG).show()
-                   // adapter = ItemAdapter(filteredlist)
-                   // adapter.clearList()
+                    if (!noDataFoundToastShown) {
+                        Toast.makeText(this, "Sorry! No data found", Toast.LENGTH_LONG).show()
+                        noDataFoundToastShown = true
+                    }
+
+                    //   Toast.makeText(this, "Sorry!No data found", Toast.LENGTH_LONG).show()
+
                     prepareOtherList(
                         recyclerView_contact,
                         filteredlist
@@ -180,6 +192,7 @@ class ContactList : AppCompatActivity() {
                 }
 
                 else {
+                        noDataFoundToastShown = false
                         prepareOtherList(
                             recyclerView_contact,
                             filteredlist
@@ -189,11 +202,7 @@ class ContactList : AppCompatActivity() {
 
             }
 
-            else {
 
-               // Toast.makeText(this, "Sorry!No data found", Toast.LENGTH_LONG).show()
-
-            }
 
         } else {
           //  Toast.makeText(this, "Sorry!No data found", Toast.LENGTH_LONG).show()
@@ -235,7 +244,7 @@ class ContactList : AppCompatActivity() {
         }
 
         else{
-         //  rv.visibility = View.GONE
+            //  rv.visibility = View.GONE
             val itemAdapter = ItemAdapter(items)
             itemAdapter.clearList(items)
             val rLayoutmanager: RecyclerView.LayoutManager = LinearLayoutManager(this)
